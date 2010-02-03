@@ -55,7 +55,7 @@ if [[ ! -z "$(which ruby 2>/dev/null | awk '/rvm/{print}')" ]] ; then
       macruby)  unicode="⌘" ;;
       maglev)   unicode="㎖" ;;
       ironruby) unicode="♭" ;;
-      mput)     unicode="⎈" ;;
+      mput)     unicode="♨" ;;
       system)   unicode="➆" ;;
       ruby)
         case "$version" in
