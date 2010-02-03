@@ -48,6 +48,7 @@ if [[ ! -z "$(which ruby 2>/dev/null | awk '/rvm/{print}')" ]] ; then
   if [[ ! -z "$unicode_flag" ]] ; then
     interpreter="$(echo $ruby_string | awk -F'-' '{print $1}')"
     version="$(echo $ruby_string | awk -F'-' '{print $2}')"
+    unicode="♢" # semi-sensible default.
     [[ x$interpreter = xjruby    ]] && unicode="☯"
     [[ x$interpreter = xrbx      ]] && unicode="☃"
     [[ x$interpreter = xree      ]] && unicode="✈"
