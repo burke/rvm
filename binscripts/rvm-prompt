@@ -48,21 +48,25 @@ if [[ ! -z "$(which ruby 2>/dev/null | awk '/rvm/{print}')" ]] ; then
   if [[ ! -z "$unicode_flag" ]] ; then
     interpreter="$(echo $ruby_string | awk -F'-' '{print $1}')"
     version="$(echo $ruby_string | awk -F'-' '{print $2}')"
-    unicode="♢" # semi-sensible default.
-    [[ x$interpreter = xjruby    ]] && unicode="☯"
-    [[ x$interpreter = xrbx      ]] && unicode="☃"
-    [[ x$interpreter = xree      ]] && unicode="✈"
-    [[ x$interpreter = xmacruby  ]] && unicode="⌘"
-    [[ x$interpreter = xmaglev   ]] && unicode="㎖"
-    [[ x$interpreter = xironruby ]] && unicode="♭"
-    [[ x$interpreter = xmput     ]] && unicode="⎈"
-    [[ x$interpreter = xsystem   ]] && unicode="➆"
-    if [[ x$interpreter = xruby ]] ; then
-        [[ x$version = x1.8.6 ]] && unicode="❻"
-        [[ x$version = x1.8.7 ]] && unicode="❼"
-        [[ x$version = x1.9.1 ]] && unicode="❶"
-        [[ x$version = x1.9.2 ]] && unicode="❷"
-    fi 
+    case "$interpreter" in
+      jruby)    unicode="☯" ;;
+      rbx)      unicode="☃" ;;
+      ree)      unicode="✈" ;;
+      macruby)  unicode="⌘" ;;
+      maglev)   unicode="㎖" ;;
+      ironruby) unicode="♭" ;;
+      mput)     unicode="⎈" ;;
+      system)   unicode="➆" ;;
+      ruby)
+        case "$version" in
+          1.8.6)  unicode="❻"  ;; 
+          1.8.7)  unicode="❼"  ;; 
+          1.9.1)  unicode="❶"  ;; 
+          1.9.2)  unicode="❷"  ;;
+          *)      unicode="♢"  ;;
+        esac ;;
+      *) unicode="♢" ;;
+    esac 
   fi
 
   command="prompt=\"$format\""
